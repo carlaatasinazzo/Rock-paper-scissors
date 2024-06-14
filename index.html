@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getComputerChoice() {
+            return Math.floor(Math.random() * 100);
+        }
+        
+
+        if (getComputerChoice()<= 33){
+            computerChoice = "rock";
+        } else if (getComputerChoice()> 33 || getComputerChoice()< 66) {
+            computerChoice = "paper";
+        } else {
+            computerChoice = "scissors";
+        }
+        //console.log(computerChoice);
+
+        let humanScore=0;
+        let computerScore=0;
+
+        function playRound(getHumanChoice,computerChoice){
+            if(getHumanChoice===computerChoice){
+                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
+                "It's a tie, try again.\n" +
+                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
+            } else if (getHumanChoice==="rock" && computerChoice==="paper"){
+                computerScore++;
+                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
+                "Computer score 1 point.\n" +
+                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
+            } else if (getHumanChoice==="paper" && computerChoice==="rock"){
+                humanScore++;
+                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
+                "You score 1 point.\n" +
+                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
+            } else if (getHumanChoice==="scissors" && computerChoice==="rock"){
+                computerScore++;
+                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
+                "Computer score 1 point.\n" +
+                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
+            } else if (getHumanChoice==="rock" && computerChoice==="scissors"){
+                humanScore++;
+                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
+                "You score 1 point.\n" +
+                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
+            } else if (getHumanChoice==="paper" && computerChoice==="scissors"){
+                computerScore++;
+                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
+                "Computer score 1 point.\n" +
+                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
+            } else if (getHumanChoice==="scissors" && computerChoice==="paper"){
+                humanScore++;
+                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
+                "You score 1 point.\n" +
+                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
+            }
+            //console.log(humanScore);
+            //console.log(computerScore);
+        }
+
+        for(let i = 0; i < 5; i++){
+        let getHumanChoice = prompt("What's your choice? paper, rock or scissors");
+        //console.log(getHumanChoice);
+        playRound(getHumanChoice,computerChoice);
+        }
+
+        if(humanScore>computerScore){
+            alert("You win.\n Your score: "+humanScore+" ==> Computer score: "+computerScore+"\n Great job!");
+        } else {
+            alert("You lost.\n Your score: "+humanScore+" ==> Computer score: "+computerScore+"\n Better luck next time!");
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
