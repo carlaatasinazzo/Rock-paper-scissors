@@ -9,15 +9,9 @@
             return Math.floor(Math.random() * 100);
         }
         
+        
 
-        if (getComputerChoice()<= 33){
-            computerChoice = "rock";
-        } else if (getComputerChoice()> 33 || getComputerChoice()< 66) {
-            computerChoice = "paper";
-        } else {
-            computerChoice = "scissors";
-        }
-        //console.log(computerChoice);
+        
 
         let humanScore=0;
         let computerScore=0;
@@ -65,6 +59,14 @@
         for(let i = 0; i < 5; i++){
         let getHumanChoice = prompt("What's your choice? paper, rock or scissors").toLowerCase();
         //console.log(getHumanChoice);
+        if (getComputerChoice()<= 33){
+            computerChoice = "rock";
+        } else if (getComputerChoice()> 33 || getComputerChoice()< 66) {
+            computerChoice = "paper";
+        } else {
+            computerChoice = "scissors";
+        }
+        console.log(computerChoice);
         playRound(getHumanChoice,computerChoice);
         }
 
