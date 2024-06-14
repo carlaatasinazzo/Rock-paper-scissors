@@ -63,7 +63,7 @@
         }
 
         for(let i = 0; i < 5; i++){
-        let getHumanChoice = prompt("What's your choice? paper, rock or scissors");
+        let getHumanChoice = prompt("What's your choice? paper, rock or scissors").toLowerCase();
         //console.log(getHumanChoice);
         playRound(getHumanChoice,computerChoice);
         }
