@@ -3,82 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        function getComputerChoice() {
-            return Math.floor(Math.random() * 100);
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        
-        
-
-        
-
-        let humanScore=0;
-        let computerScore=0;
-
-        function playRound(getHumanChoice,computerChoice){
-            if(getHumanChoice===computerChoice){
-                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
-                "It's a tie, try again.\n" +
-                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
-            } else if (getHumanChoice==="rock" && computerChoice==="paper"){
-                computerScore++;
-                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
-                "Computer score 1 point.\n" +
-                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
-            } else if (getHumanChoice==="paper" && computerChoice==="rock"){
-                humanScore++;
-                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
-                "You score 1 point.\n" +
-                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
-            } else if (getHumanChoice==="scissors" && computerChoice==="rock"){
-                computerScore++;
-                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
-                "Computer score 1 point.\n" +
-                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
-            } else if (getHumanChoice==="rock" && computerChoice==="scissors"){
-                humanScore++;
-                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
-                "You score 1 point.\n" +
-                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
-            } else if (getHumanChoice==="paper" && computerChoice==="scissors"){
-                computerScore++;
-                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
-                "Computer score 1 point.\n" +
-                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
-            } else if (getHumanChoice==="scissors" && computerChoice==="paper"){
-                humanScore++;
-                alert("You: " + getHumanChoice + " ==> Computer: " + computerChoice + ".\n" +
-                "You score 1 point.\n" +
-                "Your score: " + humanScore + " ==> Computer score: " + computerScore + ".");
-            }
-            //console.log(humanScore);
-            //console.log(computerScore);
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
         }
-
-        for(let i = 0; i < 5; i++){
-        let getHumanChoice = prompt("What's your choice? paper, rock or scissors").toLowerCase();
-        //console.log(getHumanChoice);
-        if (getComputerChoice()<= 33){
-            computerChoice = "rock";
-        } else if (getComputerChoice()> 33 || getComputerChoice()< 66) {
-            computerChoice = "paper";
-        } else {
-            computerChoice = "scissors";
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
         }
-        console.log(computerChoice);
-        playRound(getHumanChoice,computerChoice);
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s;
         }
-
-        if(humanScore>computerScore){
-            alert("You win.\n Your score: "+humanScore+" ==> Computer score: "+computerScore+"\n Great job!");
-        } else {
-            alert("You lost.\n Your score: "+humanScore+" ==> Computer score: "+computerScore+"\n Better luck next time!");
+        button:hover {
+            background-color: #0056b3;
         }
-        
-    </script>
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Rock Paper Scissors Game</h1>
+        <div id="buttons-container">
+            <button id="rock-btn">Rock</button>
+            <button id="paper-btn">Paper</button>
+            <button id="scissors-btn">Scissors</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let humanScore = 0;
+        let computerScore = 0;
+
+        // Function to get computer's choice
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        // Function to update the result message
+        function updateResultMessage(humanChoice, computerChoice, resultMsg) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = ''; // Clear previous content
+
+            const p1 = document.createElement('p');
+            p1.textContent = `You: ${humanChoice}. Computer: ${computerChoice}.`;
+            resultDiv.appendChild(p1);
+
+            const p2 = document.createElement('p');
+            p2.textContent = resultMsg;
+            resultDiv.appendChild(p2);
+
+            const p3 = document.createElement('p');
+            p3.textContent = `Your score: ${humanScore}. Computer score: ${computerScore}.`;
+            resultDiv.appendChild(p3);
+        }
+
+        // Function to check winner and update the UI
+        function checkWinner() {
+            const resultDiv = document.getElementById('result');
+
+            if (humanScore === 5 || computerScore === 5) {
+                if (humanScore > computerScore) {
+                    alert(`You win! Your score: ${humanScore}. Computer score: ${computerScore}. Great job!`);
+                } else {
+                    alert(`You lost! Your score: ${humanScore}. Computer score: ${computerScore}. Better luck next time!`);
+                }
+                // Reset scores
+                humanScore = 0;
+                computerScore = 0;
+
+                // Clear result message
+                resultDiv.textContent = '';
+            }
+        }
+
+        // Function to play a round and update the UI
+        function playRound(getHumanChoice) {
+            const computerChoice = getComputerChoice();
+            let resultMsg = "";
+
+            if (getHumanChoice === computerChoice) {
+                resultMsg = `It's a tie! You both chose ${getHumanChoice}. Try again!`;
+            } else if (
+                (getHumanChoice === 'rock' && computerChoice === 'paper') ||
+                (getHumanChoice === 'paper' && computerChoice === 'scissors') ||
+                (getHumanChoice === 'scissors' && computerChoice === 'rock')
+            ) {
+                computerScore++;
+                resultMsg = `Computer chose ${computerChoice}. Computer scores 1 point.`;
+            } else {
+                humanScore++;
+                resultMsg = `Computer chose ${computerChoice}. You score 1 point.`;
+            }
+
+            updateResultMessage(getHumanChoice, computerChoice, resultMsg);
+            checkWinner();
+        }
+
+        // Event listeners for buttons
+        document.getElementById('rock-btn').addEventListener('click', function() {
+            playRound('rock');
+        });
+
+        document.getElementById('paper-btn').addEventListener('click', function() {
+            playRound('paper');
+        });
+
+        document.getElementById('scissors-btn').addEventListener('click', function() {
+            playRound('scissors');
+        });
+    </script>
 </body>
 </html>
